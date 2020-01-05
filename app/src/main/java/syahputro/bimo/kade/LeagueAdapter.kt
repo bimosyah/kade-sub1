@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.*
@@ -68,7 +67,7 @@ class LeagueAdapter(val context: Context, val items: List<Item>) :
     override fun onBindViewHolder(holder: LeagueViewHolder, position: Int) {
         holder.bindItem(items[position])
         holder.itemView.onClick {
-            context.startActivity(context.intentFor<DetailActivity>())
+            context.startActivity<DetailActivity>("object" to items[position])
         }
     }
 
