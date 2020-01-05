@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class LeagueAdapter(val context: Context, val items: List<Item>) :
     RecyclerView.Adapter<LeagueAdapter.LeagueViewHolder>() {
@@ -37,8 +39,6 @@ class LeagueAdapter(val context: Context, val items: List<Item>) :
                     }
 
                 }
-
-
             }
         }
     }
@@ -47,6 +47,7 @@ class LeagueAdapter(val context: Context, val items: List<Item>) :
 
         private val LeagueFoto: ImageView = view.find(R.id.gambar_League)
         private val LeagueName: TextView = view.find(R.id.nama_League)
+        private val layout: LinearLayout = view.find(R.id.item_layout)
 
         fun bindItem(items: Item) {
             Glide.with(itemView.context)
@@ -66,6 +67,9 @@ class LeagueAdapter(val context: Context, val items: List<Item>) :
 
     override fun onBindViewHolder(holder: LeagueViewHolder, position: Int) {
         holder.bindItem(items[position])
+        holder.itemView.onClick {
+            context.startActivity(context.intentFor<DetailActivity>())
+        }
     }
 
 
